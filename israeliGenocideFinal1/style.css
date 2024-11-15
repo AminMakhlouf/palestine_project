@@ -1,0 +1,617 @@
+*{
+
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+  
+  }
+  body, html {
+    height: 100%;
+    font-family: Arial, sans-serif;
+    scroll-behavior: smooth;
+    overflow-x: hidden;
+  
+    
+    
+  }
+  ::-webkit-scrollbar {
+    width: 7px;
+    background: transparent;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #000000;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #9a0000;
+    border-radius: 50px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+    transition: ease-in-out 0.5ms;
+  }
+  #background {
+    background: url('background.png') no-repeat center center fixed;
+    background-size: cover;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index:-2 ;
+  
+  }
+    #blood {
+      position: absolute;
+      background: url('av2dea8em-removebg-preview.png') no-repeat center top;
+      bottom: 0;
+      position: fixed;
+      background-size: contain;
+      width: 100%;
+      height: 100%;
+      left: 32%;
+      top: -100%;
+      transition: background-position 0.3s ease;
+      z-index: 1;
+      pointer-events: none;
+      opacity:0.7 ;
+  
+  }
+  .backdrop{
+    position: fixed;
+    top:0 ;
+    left: 0;
+    right:0 ;
+    bottom:0 ;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 2;
+    display: none;
+    opacity: 0;
+  }
+  .backdrop.show{
+    display: block;
+    opacity: 1;
+  }
+  li{
+    list-style: none;
+  }
+  a{
+    text-decoration: none;
+    color: #fff;
+    font-size: 1rem;
+  }
+  
+  header{
+    position: relative;
+    padding: 0 2rem;
+    width: 100%;
+
+
+  }
+  .navbar{
+    width: 100vw;
+    height: 60px;
+    max-width: 100vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    z-index: 5;
+    background-color: rgba(0, 0, 0, 0.39);
+
+
+    
+  
+  }
+  .navbar .logo a {
+    font-size: 1.5rem;
+    font-weight: bold;
+    z-index: 1;
+  }
+  
+  .wrapper .links{
+    display: flex;
+    gap: 15px;
+    list-style: none;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
+  .wrapper .icon{
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    color: white;
+  
+  }
+  .wrapper{
+    padding: 35px;
+    position: relative;
+    max-width: 500px;
+    overflow-x:hidden ;
+    border-radius: 13px;
+  }
+  .icon:first-child{
+    left: 0;
+    display: none;
+    background-size: cover;
+    background-repeat:no-repeat  ;
+  
+    
+  }
+  .icon:last-child{
+    right: 0%;
+    justify-content: flex-end;
+    background-size:cover;
+    background-repeat:no-repeat  ;
+  
+  
+  }
+  .icon:first-child i {
+    margin-left: 15px;
+  }
+  .icon:last-child i {
+    margin-right: 15px;
+    
+  
+  }
+  
+  .icon i{
+    width: 30px;
+    height: 50px; /* Adjust this height as needed */
+    overflow: hidden; /* Cut off any overflow */
+    display: flex; /* Ensure flex properties work */
+      cursor: pointer;
+    font-size: 1.2rem;
+    text-align: center;
+    line-height: 55px;
+    border-radius: 50%;
+  }
+  .links {
+    padding: 10px 13px;
+    width: calc(100% - 22px); 
+    overflow-x: auto; /* enable horizontal scrolling */
+  }
+  
+  .links .link{
+    cursor: pointer;
+    font-size: 1.18rem;
+    padding: 10px 13px;
+    width: calc(100% - 18px);
+    border-radius: 30px;
+   }
+  .navbar .toggle_btn{
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: none;
+  }
+  
+  .action_btn{
+    background-color: black;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border: none;
+    outline: none;
+    font-size: 0.8rem;
+    z-index: 0;
+    font-weight: bold;
+    cursor: pointer;
+    border: 2px solid white;
+    font-weight: lighter;
+  }
+  .action_btn:hover{
+    color:   rgb(237, 13, 13);
+    background-color: #fff;
+    border-color:  black;
+    transition: 0.5s;
+    z-index: 10;
+  }
+  .action_btn:active{
+    scale: 0.95;
+    
+  }
+  .dropdown_menu {
+    position: absolute;
+    right: 2rem;
+    top: 60px;
+    width: 300px;
+    height: 0px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border-radius: 10px;
+    overflow: hidden;
+    display: none;
+    transition: height 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+  .dropdown_menu li{
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .dropdown_menu.open {
+    height: 270px;
+   }
+  .dropdown_menu .action_btn{
+    padding: 0.7rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-self: center;
+  
+  }
+  @media (max-width: 992px) {
+    .navbar .action_btn{
+      display: block;
+    }
+    .navbar{
+      position: relative;
+    }
+
+    .wrapper{
+      left: 0;
+    }
+    .modal-content {
+  
+      width: 100%;
+      height: 50%;
+  
+    }
+    .caption{
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+    p {
+      text-overflow: ellipsis;
+      overflow: hidden;
+    }
+  
+  }
+  @media (max-width: 576px) {
+    .dropdown_menu {
+    left: 2rem;
+    width: unset;}
+  }
+  .tabs-box.dragging .tab {
+    user-select: none;
+    }
+  /* Styles for all links */
+  /* Styles for all links */
+  .link a {
+      text-decoration: none; /* No underline by default */
+      color: white; /* Default text color */
+      transition: transform 0.3s ease, text-decoration 0.3s ease; /* Smooth transitions */
+  }
+  
+  /* Active state styling */
+  .link.active a {
+      text-decoration: underline red; /* Underline with red color */
+      text-underline-offset: 0.5em; 
+      text-decoration-thickness: 0.1em; 
+  }
+  
+  .link a:hover {
+      transform: scale(1.2) ; 
+      text-decoration: underline red; /* Underline with red color on hover */
+      text-underline-offset: 0.5em; 
+      text-decoration-thickness: 0.1em; 
+  }
+  
+  
+  .wrapper-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%; /* or a specific width */
+    position: relative;
+    padding: 20px;
+    scroll-behavior: smooth;
+    overflow: hidden;
+  
+  }  
+    
+  
+  
+  .wrapper1 {
+    
+    width: 100%; /* or a specific width */
+    height: 1000px;
+    position: relative; /* Ensure that positioned children are relative to this container */
+    padding: 20px;
+    left: 0;
+
+    transition: transform 0.7s ease-in-out, opacity 0s ease-in-out;
+  
+  
+  
+  }
+  
+  
+  canvas {
+    position: absolute; /* Make canvas position absolute */
+    z-index: -1; /* Make sure it is behind other elements */
+  }
+  
+  
+  
+  .item {
+    width: 230px;
+    height: 150px;
+    padding: 10px;
+    margin-top: 2rem;
+    transform: translateX(-50%);
+    box-sizing: border-box; /* Ensures padding and border are included in width/height */
+  
+    position: absolute;
+    transition: transform 0.35s ease-in-out, filter 0.35s ease-in-out;
+  
+  }
+  .item:hover {
+    filter: none;
+    transform: scale(1, 1) rotate(0deg) !important;
+  }
+  
+  
+  .polaroid {
+    background: url(polaroid\ back.png);
+    background-size: cover;
+  
+     padding: 1rem;
+    box-shadow: 0 0.2rem 1.2rem rgba(0, 0, 0, 0.2);
+  
+    line-height: 5em;
+  }
+  .diamond {
+    width: 25px;
+    height: 25px;
+    background: rgb(102,5,18);
+    background: linear-gradient(0deg, rgba(102,5,18,1) 0%, rgba(151,8,28,1) 40%, rgba(197,12,20,1) 100%);
+     /* Adjust color as needed */
+    position: absolute;
+    box-shadow: 1px 3px 5px 2px #000000;
+  
+    top: -0.6%; /* Adjust position */
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg); /* Creates diamond by rotating a square */
+    z-index: 10;
+  }
+    
+  .caption {
+    font-size: 1.3rem;
+    text-align: center;
+    line-height: 1em;
+    margin-bottom: 0rem;
+  
+  
+  }
+  .text1 {
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 1em;
+    margin-bottom: 2rem;
+    margin-top: 50px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    
+  
+  
+  }
+ 
+  .polaroid > img {
+    max-width: 100%;
+    height: auto;
+    filter: grayscale(100%);
+  
+  }
+  .polaroid > img:hover{
+  filter: none;
+  transform: scale(1, 1) rotate(0deg) !important;
+  transition: all 0.35s;}
+  
+  
+  .polaroid > video {
+    max-width: 100%;
+    height: 185px;
+  
+  }
+  .polaroid > video:hover{
+  filter: none;
+  transform: scale(1, 1) rotate(0deg) !important;
+  transition: all 0.35s;}
+  
+  
+  
+  
+  #lineCanvas {
+    position: absolute;
+  
+    z-index: -1; /* Behind the div elements */
+  }
+  .item:hover img {
+    filter: none;
+  }
+  .item .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;  
+    transition: all 0.35s;
+  }
+  
+  .item:nth-of-type(4n+1) {
+    transform: scale(0.8, 0.8);
+    transition: all 0.35s;
+  }
+  
+  .item:nth-of-type(4n+1) .polaroid:before {
+  
+    height: 30%;
+    width: 47%;
+    bottom: 30px;
+    right: 10px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
+  }
+  
+  .item:nth-of-type(4n+2) {
+    transform: scale(0.8, 0.8);
+    transition: all 0.35s;
+  }
+  
+  .item:nth-of-type(4n+2) .polaroid:before {
+    transform: rotate(-6deg);
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    left: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.4);
+  }
+  
+  .item:nth-of-type(4n+4) {
+    transform: scale(0.8, 0.8) ;
+    transition: all 0.35s;
+  }
+  
+  .item:nth-of-type(4n+4) .polaroid:before {
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    right: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+  }
+  
+  .item:nth-of-type(4n+3) {
+    transform: scale(0.8, 0.8) ;
+    transition: all 0.35s;
+  }
+  
+  .item:nth-of-type(4n+3) .polaroid:before {
+    height: 20%;
+    width: 47%;
+    bottom: 30px;
+    left: 12px;
+    box-shadow: 0 2.1rem 2rem rgba(0, 0, 0, 0.3);
+  }
+  
+  
+  
+  .item:hover .polaroid:before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    transform: rotate(0deg);
+    height: 90%;
+    width: 90%;
+    bottom: 0%;
+    right: 5%;
+    box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.2);
+    transition: all 0.35s;
+  }
+  
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding: 20;
+    opacity: 0.2;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s;
+    z-index: 10;
+  }
+  
+  
+  .modal-content {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(150deg, rgba(195,198,181,1) 0%, rgba(190,192,178,1) 81%);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    max-width: 500%;
+    max-height: 100%;
+    overflow: hidden;
+    display: block; /* add this to make .modal-content a block element */
+  }
+  
+  .description-content {
+    font-size: 1.5rem;
+    word-wrap: break-word;
+  padding-left: 20px;
+    text-align: center;
+    line-height: 1em;
+    margin-top: 20px  ;
+    margin-bottom: 2rem;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    line-break: loose;
+  }
+  
+  .close-button {
+    position: absolute;
+    font-size: 0.8rem;
+    top: 10px;
+    right: 10px;
+    background-color: black;
+    color: #fff;
+    border: 2px solid white;
+    font-weight: lighter;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .close-button:hover {
+    color:   rgb(237, 13, 13);
+    background-color: #fff;
+    border-color:  white;
+    transition: 0.5s;
+    z-index: 10;}
+  
+  .description-content p {
+    left: 0%;
+  
+  }
+  .modal-content {
+    display: flex; /* add this to make the description div and modal content element align horizontally */
+    padding: 20px;
+  }
+  
+  .modal-content > * { /* add this to make the modal content element and description div align horizontally */
+    flex: 1;
+  }
+  
+  .modal-content > :first-child { /* make the modal content element take up the majority of the space */
+    flex: 3;
+  }
+  
+  .modal-content > :last-child { /* make the description div take up the remaining space */
+    flex: 1;
+    margin-left: 20px; /* add some margin to separate the two elements */
+  }
+  
+  
+  .modal-content img, .modal-content video {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s;
+  }
+  
+  
+  .modal-content p {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    color: #333;
+    padding: 20px;
+    text-align: center;
+    word-wrap: break-word;
+  }
+  
